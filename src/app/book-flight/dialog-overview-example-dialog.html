@@ -1,0 +1,21 @@
+<!-- code the dialog box here as per instructions given in QP -->
+
+<div>
+    <h3 style="color: green;">{{greeting}} {{data.passangerName}}</h3>
+    <h2 style="color:blue">Please Confirm your booking details</h2>
+    <table class = "table table-striped">
+        <tbody>
+            <tr>
+                <td scope = "col">Flight Id</td>
+                <td scope = "col">{{data.flightId}}</td>
+            </tr>
+            <tr>
+                <td scope = "col">Number of Ticket</td>
+                <td scope = "col">{{data.noOfTickets}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <button mat-flat-button (click)="onNoClick()">Cancel</button>&nbsp;
+    <button mat-flat-button>Confirm Booking</button>&nbsp;
+    <button mat-flat-button>Proceeds to View Bookings </button>
+</div>

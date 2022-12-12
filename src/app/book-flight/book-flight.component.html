@@ -1,0 +1,40 @@
+<div fxFlexOffset="30%" fxFlex="50%">
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar class="header-image"></div>
+      <mat-card-title>Book Flight</mat-card-title>
+      <mat-card-subtitle style="color:white">Plan Your Trip Here</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content class="text-center">
+      <form [formGroup]="bookingForm" (ngSubmit)="confirmBooking()">
+        <div style="text-align:center" >
+          <mat-form-field appearance="fill">
+            <mat-label>Passenger Name</mat-label>
+            <input matInput type = "text" formControlName = "passangerName" >
+            <mat-error *ngIf = "bookingForm.controls['passangerName'].errors?.['required']">You must enter a value</mat-error>
+            <mat-error *ngIf = "bookingForm.controls['passangerName'].errors?.['pattern']">Not a Valid Passenger Name</mat-error>
+            <mat-hint>Hint:John,Emily,Jack</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Number of Tickets</mat-label>
+            <input matInput type = "number" formControlName  = "noOfTickets">
+            <mat-error *ngIf = "bookingForm.controls['noOfTickets'].errors?.['required']">You must enter a value</mat-error>
+            <mat-error *ngIf = "bookingForm.controls['noOfTickets'].errors?.['min']">minimum 1 ticket must be booked</mat-error>
+            <mat-hint>Hint:1,2,3...</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Flight Id</mat-label>
+            <input matInput type = "text" formControlName = "flightId" >
+            <mat-error *ngIf = "bookingForm.controls['flightId'].errors?.['required']">You must enter a value</mat-error>
+            <mat-error *ngIf = "bookingForm.controls['flightId'].errors?.['flightError']">{{bookingForm.controls['flightId'].errors?.['flightError'].message}}</mat-error>
+            <mat-hint>Hint:IND-101</mat-hint>
+          </mat-form-field>
+            <br/>
+            <br/>
+          <button type = "submit" mat-flat-button  color="primary" [disabled]="!this.bookingForm.valid">Book Flight</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

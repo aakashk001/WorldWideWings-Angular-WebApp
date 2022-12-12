@@ -1,0 +1,53 @@
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .error-message{
+      color: red;
+  }
+
+  .mat-form-field {
+    width: 350px !important;
+}
+
+.header-image{
+    background-image: url('../../assets/logo.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat
+}
+
+.mat-card{
+    width: 500px;
+}
+
+mat-card-header{
+    text-align:center;
+    background-color: rgb(57, 65, 172);
+    padding: 8px;
+    border-radius:3px;
+    color: white;
+}
+
+mat-card-content mat-form-field{
+    margin-top:15px; 
+}
+
+button[type = "submit"]{
+    margin-top:15px; 
+}
+
+form{
+    font-size: 125%;
+}
+mat-card{
+    justify-content: center;
+    margin-top: 50px;
+    margin-left:450px;
+}
