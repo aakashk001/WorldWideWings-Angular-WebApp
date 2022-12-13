@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 /* Import the required modules here */
 import{MatDialog} from '@angular/material/dialog'
 import{MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog'
+import { BookFlightService } from './book-flight.service';
 
 
 @Component({
@@ -30,7 +31,8 @@ export class BookFlightComponent implements OnInit {
 
   confirmBooking() {
     /* Code as per the instructions given in the QP */
-    this.dialog.open(DialogOverviewExampleDialog,{data:{passangerName:this.bookingForm.value.passangerName,
+    this.dialog.open(DialogOverviewExampleDialog,{data:{passengerName
+      :this.bookingForm.value.passangerName,
     noOfTickets :this.bookingForm.value.noOfTickets,
     flightId:this.bookingForm.value.flightId
     }});
@@ -61,6 +63,7 @@ export class DialogOverviewExampleDialog {
   errorMessage!: String;
   greeting!: String;
   date = new Date();
+  button :boolean= true;
   ngOnInit():any {
     if(this.date.getHours()>=0 && this.date.getHours()<=11 ){
       this.greeting = "Good Morning!!"
@@ -78,7 +81,7 @@ export class DialogOverviewExampleDialog {
 
 
   /* Inject the required dependencies into the constructor */
-  constructor(@Inject(MAT_DIALOG_DATA) public data:any, private dialogRef:MatDialogRef<DialogOverviewExampleDialog>) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data:any, private dialogRef:MatDialogRef<DialogOverviewExampleDialog>, private service:BookFlightService) { }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -87,6 +90,19 @@ export class DialogOverviewExampleDialog {
   }
 
   confirmBooking() {
+    return this.service.bookFlight(this.data).subscribe(
+      result=>{
+        this.successMessage = "";
+        this.errorMessage = "";
+        this.successMessage = result.message;
+        this.button  =false
+      },
+      error=>{
+        this.successMessage = "";
+        this.errorMessage = error.error.message;
+        console.log(error)
+      }
+    )
     /* Code as per the instructions given in the QP */
   }
 

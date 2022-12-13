@@ -1,7 +1,8 @@
 <!-- code the dialog box here as per instructions given in QP -->
 
 <div>
-    <h3 style="color: green;">{{greeting}} {{data.passangerName}}</h3>
+    <h3 style="color: green;">{{greeting}} {{data.passengerName
+    }}</h3>
     <h2 style="color:blue">Please Confirm your booking details</h2>
     <table class = "table table-striped">
         <tbody>
@@ -16,6 +17,8 @@
         </tbody>
     </table>
     <button mat-flat-button (click)="onNoClick()">Cancel</button>&nbsp;
-    <button mat-flat-button>Confirm Booking</button>&nbsp;
+    <button mat-flat-button (click)="confirmBooking()"[disabled]="!button">Confirm Booking</button>&nbsp;
     <button mat-flat-button>Proceeds to View Bookings </button>
+    <h2 style="color:green">{{successMessage}}</h2>
+    <h2 style="color: red">{{errorMessage}}</h2>
 </div>
